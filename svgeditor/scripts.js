@@ -71,14 +71,25 @@ const updateDrawing = {
     const text = svg.getElementById(textId);
     // this replaces the existing text with whatever is passed into to the updateDrawing.updateSvg function
     text.textContent = newText;
+    // and then updates the canvas to match
+    updateDrawing.updateCanvas(svg.querySelector('svg'));
+
   },
-  updateCanvas: function() {
+  updateCanvas: function(svg) {
+    svg = makeBlobFromSVG(svg);
+    let c0 = document.getElementById(canvasId);
+    let ctx0 = c0.getContext("2d");
+    const image = new Image();
+    image.addEventListener('load', () => {
+      ctx0.drawImage(image, 0, 0, c0.width, c0.height);
+    }, false);
+    image.src = svg;
   }
 }
 
 // Generate a Blob URL to later use as image.src to load the svg as an imag to the canvas
 function makeBlobFromSVG(svg) {
-  const blob = new Blob([svg], { type: 'image/svg+xml' });
+  const blob = new Blob([svg.outerHTML], { type: 'image/svg+xml' });
   const url = URL.createObjectURL(blob);
   return url;
 }
