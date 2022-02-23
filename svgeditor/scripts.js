@@ -63,9 +63,14 @@ const updateDrawing = {
     const inputEl = document.getElementById(inputId);
 		inputEl.addEventListener( 'keyup', () => {
       // console.log(inputEl.value);
+      updateDrawing.updateSvg(inputEl.value);
     } );
 	},
-  updateSvg: function() {
+  updateSvg: function(newText) {
+    const svg = document.getElementById(objId).contentDocument;
+    const text = svg.getElementById(textId);
+    // this replaces the existing text with whatever is passed into to the updateDrawing.updateSvg function
+    text.textContent = newText;
   },
   updateCanvas: function() {
   }
