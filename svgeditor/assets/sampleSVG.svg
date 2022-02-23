@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="sampleSVG" width="1080" height="1080" viewBox="0 0 1080 1080" fill="none">
+    <g>
+        <rect width="1080" height="1080" fill="#F5F5F5" />
+        <text id="textID" fill="black" xml:space="preserve" style="white-space: normal" font-family="Arial"
+            font-size="64" letter-spacing="0em" x="50%" y="50%" hieght="1080" width="1080" text-anchor="middle">Text to
+            be replaced
+        </text>
+    </g>
+</svg>
