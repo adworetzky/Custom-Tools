@@ -45,6 +45,37 @@ const init = () => {
   document.querySelector('main').appendChild(sidebar);
   document.querySelector('main').appendChild(canvasWrapper);
   document.querySelector('body').appendChild(obj);
+
+  updateDrawing.init();
+}
+
+const updateDrawing = {
+	init: function() {
+    const svg = document.getElementById(objId);
+    
+    // wait for this to fully load, then update the canvas element
+    svg.addEventListener('load', () => {
+      updateDrawing.updateCanvas(svg.contentDocument.querySelector('svg'));
+    });
+    updateDrawing.listener();
+  },
+	listener: function() {
+    const inputEl = document.getElementById(inputId);
+		inputEl.addEventListener( 'keyup', () => {
+      // console.log(inputEl.value);
+    } );
+	},
+  updateSvg: function() {
+  },
+  updateCanvas: function() {
+  }
+}
+
+// Generate a Blob URL to later use as image.src to load the svg as an imag to the canvas
+function makeBlobFromSVG(svg) {
+  const blob = new Blob([svg], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(blob);
+  return url;
 }
 
 window.onload = init();
