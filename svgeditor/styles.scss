@@ -1,3 +1,5 @@
+@use "../utilities/variables" as v;
+
 /* clearfix */
 *,
 *:before,
@@ -15,17 +17,12 @@
 .clearfix::after {
   clear: both;
 }
-$font: Arial;
-$dark: #222831;
-$mid: #30475e;
-$light: #dddddd;
-$accent: #f05454;
 
 html {
   width: 100%;
   height: 100%;
   margin: 0;
-  background-color: $dark;
+  background-color: v.$dark;
 }
 body {
   display: flex;
@@ -34,9 +31,9 @@ body {
   height: 99%;
   width: 99%;
 
-  background-color: $dark;
-  font-family: $font;
-  color: $light;
+  background-color: v.$dark;
+  font-family: v.$font;
+  color: v.$light;
   font-size: 14px;
 }
 main {
@@ -48,7 +45,7 @@ main {
   margin: auto;
 }
 canvas {
-  background-color: $accent;
+  background-color: v.$accent;
   max-width: 65%;
   height: auto;
   margin: auto;
@@ -56,9 +53,7 @@ canvas {
 .ui-element {
   // margin: auto;
   width: 100%;
-}
-label {
-  text-align: left;
+  height: 10%;
 }
 
 #ui-wrapper {
@@ -66,21 +61,33 @@ label {
   flex-direction: column;
   height: 100%;
   width: 25%;
-  background-color: $mid;
-  justify-content: start;
+  background-color: v.$mid;
+  justify-content: space-evenly;
   padding: 1%;
+}
+label {
+  text-align: left;
+}
+#ti-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50%;
 }
 #canvas-wrapper {
   display: flex;
   width: 70%;
-  background-color: $mid;
+  background-color: v.$mid;
   justify-content: space-evenly;
 }
 
 // I don't want these to show or take up space in the finished version but this is the best answer I've got right now
-// #svg-object {
-//   visibility: hidden;
-// }
+#svg-object {
+  // visibility: hidden;
+  max-width: 100%;
+  height: auto;
+  margin: 10px auto 0px auto;
+}
 
 // #svg-img {
 //   visibility: hidden;

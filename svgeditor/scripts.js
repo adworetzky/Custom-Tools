@@ -1,22 +1,6 @@
 // A SVG editor boiler plate for use as a template interface. Basically a non-designer need to be able to edit the text of SVGs we make in figma and export them as pngs to post places.
 
-// Wrappers
-$("<div id=ui-wrapper>").appendTo("main");
-$("<div id=canvas-wrapper>").appendTo("main");
-
-// Canvas
-$("<canvas id=canvas0 width=1080 height=1080 >").appendTo("#canvas-wrapper");
-
-// Inputs
-$("<input type=text class=ui-element id=text-entry-box>").appendTo(
-  "#ui-wrapper"
-);
-$("#text-entry-box").before("<label class=ui-element>Text Input</label>");
-
-// load svg into DOM so it can be accessed
-$(
-  "<object id=svg-object data=assets/sampleSVG.svg type=image/svg+xml>"
-).appendTo("body");
+setup();
 
 // Main OOP
 $(window).on("load", function () {
@@ -26,15 +10,23 @@ $(window).on("load", function () {
   // get the content of the SVG object
   let svgObject = document.getElementById("svg-object").contentDocument;
   console.log(svgObject);
+
   // create an image that later I can change the src of
   let img = $("<img id=svg-img>");
   img.appendTo("body");
+
   // Make a change to the original SVG
-  changeTextofSVG(svgObject);
+  changeTextofSVG(svgObject, document.querySelector("#text-entry-box").value);
+  $("#text-entry-box").on("input", function () {
+    changeTextofSVG(svgObject, document.querySelector("#text-entry-box").value);
+  });
+
   // Generate Blob URL from SVG object
   let url = makeBlobFromSVG(svgObject);
+
   // Draw an image to the Canvas
   drawImageToCanvas(document.querySelector("#svg-img"));
+
   // Update that image src as the blob URL
   updateImageSrc(document.querySelector("#svg-img"), url);
 
@@ -42,8 +34,8 @@ $(window).on("load", function () {
 });
 
 //Change the Text of my sample svg
-function changeTextofSVG(svgObject) {
-  svgObject.getElementById("textID").textContent = "This text has been changed";
+function changeTextofSVG(svgObject, string) {
+  svgObject.getElementById("textID").textContent = string;
   console.log("Text Changed");
 }
 
@@ -59,7 +51,10 @@ function makeBlobFromSVG(svgObject) {
 function drawImageToCanvas(image) {
   let c0 = document.querySelector("#canvas0");
   let ctx0 = c0.getContext("2d");
-  ctx0.drawImage(image, 0, 0);
+
+  $("#svg-img").on("load", function () {
+    ctx0.drawImage(image, 0, 0, c0.width, c0.height);
+  });
   console.log("imageDrawn");
 }
 
@@ -67,4 +62,25 @@ function drawImageToCanvas(image) {
 function updateImageSrc(image, url) {
   image.src = url;
   console.log("src updated");
+}
+
+function setup() {
+  // Wrappers
+  $("<div id=ui-wrapper>").appendTo("main");
+  $("<div id=canvas-wrapper>").appendTo("main");
+  $("<div id=ti-wrapper>").appendTo("#ui-wrapper");
+
+  // Canvas
+  $("<canvas id=canvas0 width=1080 height=1080 >").appendTo("#canvas-wrapper");
+
+  // Inputs
+  $("<input type=text class=ui-element id=text-entry-box>").appendTo(
+    "#ti-wrapper"
+  );
+  $("#text-entry-box").before("<label class=ui-element>Text Input</label>");
+
+  // load svg into DOM so it can be accessed
+  $(
+    "<object id=svg-object data=assets/sampleSVG.svg type=image/svg+xml>"
+  ).appendTo("#ui-wrapper");
 }

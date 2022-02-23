@@ -2,9 +2,7 @@
 *,
 *:before,
 *:after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  -webkit-transition: all 0.2s ease;
+  box-sizing: border-box;
   transition: all 0.2s ease;
 }
 
@@ -26,14 +24,9 @@ html {
 }
 
 body {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
   height: 99%;
   width: 99%;
   background-color: #222831;
@@ -43,18 +36,11 @@ body {
 }
 
 main {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 95%;
   height: 95%;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  justify-content: space-evenly;
+  flex-direction: row;
   margin: auto;
 }
 
@@ -67,37 +53,39 @@ canvas {
 
 .ui-element {
   width: 100%;
+  height: 10%;
+}
+
+#ui-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 25%;
+  background-color: #30475e;
+  justify-content: space-evenly;
+  padding: 1%;
 }
 
 label {
   text-align: left;
 }
 
-#ui-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
+#ti-wrapper {
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  height: 100%;
-  width: 25%;
-  background-color: #30475e;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
-  padding: 1%;
+  flex-direction: column;
+  justify-content: center;
+  height: 50%;
 }
 
 #canvas-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 70%;
   background-color: #30475e;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  justify-content: space-evenly;
 }
-/*# sourceMappingURL=styles.css.map */
+
+#svg-object {
+  max-width: 100%;
+  height: auto;
+  margin: 10px auto 0px auto;
+}/*# sourceMappingURL=styles.css.map */
