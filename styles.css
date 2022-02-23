@@ -1,1 +1,10 @@
-/* No CSS *//*# sourceMappingURL=styles.css.map */
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #222831;
+}
+
+a {
+  color: #f05454;
+}
+/*# sourceMappingURL=styles.css.map */
