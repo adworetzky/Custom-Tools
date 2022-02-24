@@ -1,4 +1,4 @@
-@use "../utilities/variables" as v;
+@use '../utilities/variables' as v;
 
 /* clearfix */
 *,
@@ -10,7 +10,7 @@
 
 .clearfix::before,
 .clearfix::after {
-  content: " ";
+  content: ' ';
   display: table;
 }
 
@@ -28,8 +28,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: 99%;
-  width: 99%;
+  height: 100%;
+  width: 100%;
 
   background-color: v.$dark;
   font-family: v.$font;
@@ -38,8 +38,8 @@ body {
 }
 main {
   display: flex;
-  width: 95%;
-  height: 95%;
+  width: 100%;
+  height: 100%;
   justify-content: space-evenly;
   flex-direction: row;
   margin: auto;
@@ -52,8 +52,8 @@ canvas {
 }
 .ui-element {
   // margin: auto;
-  width: 100%;
-  height: 10%;
+  // width: 100%;
+  // height: 10%;
 }
 
 #ui-wrapper {
@@ -64,9 +64,11 @@ canvas {
   background-color: v.$mid;
   justify-content: space-evenly;
   padding: 1%;
+  min-width: 195;
 }
 label {
   text-align: left;
+  height: 20px;
 }
 #ti-wrapper {
   display: flex;
@@ -76,17 +78,16 @@ label {
 }
 #canvas-wrapper {
   display: flex;
-  width: 70%;
-  background-color: v.$mid;
+  width: 75%;
+  // background-color: v.$mid;
   justify-content: space-evenly;
 }
 
 // I don't want these to show or take up space in the finished version but this is the best answer I've got right now
 #svg-object {
-  // visibility: hidden;
-  max-width: 100%;
-  height: auto;
-  margin: 10px auto 0px auto;
+  visibility: hidden;
+  width: 0;
+  height: 0;
 }
 
 // #svg-img {
