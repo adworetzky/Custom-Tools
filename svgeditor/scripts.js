@@ -18,13 +18,18 @@ const init = () => {
   sidebar.id = 'ui-wrapper';
   const label = document.createElement('label');
   label.for = inputId;
+  label.innerHTML = 'Text Input';
   label.className = 'ui-element';
   const input = document.createElement('input');
   input.type = 'text';
   input.id = inputId;
   input.className = 'ui-element';
+  const saveButton = document.createElement('button');
+  saveButton.id = 'save-button';
+  saveButton.innerHTML = 'Save';
   sidebar.appendChild(label);
   sidebar.appendChild(input);
+  sidebar.appendChild(saveButton);
 
   // Canvas
   const canvasWrapper = document.createElement('div');
@@ -45,7 +50,17 @@ const init = () => {
   document.querySelector('main').appendChild(sidebar);
   document.querySelector('main').appendChild(canvasWrapper);
   document.querySelector('body').appendChild(obj);
-
+  saveButton.onclick = function () {
+    const link = document.createElement('a');
+    let d = new Date(),
+      h = (d.getHours() < 10 ? '0' : '') + d.getHours(),
+      m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes(),
+      s = (d.getSeconds() < 10 ? '0' : '') + d.getSeconds();
+    link.download = 'Export-' + h + '.' + m + '.' + s + '.png';
+    link.href = canvas.toDataURL();
+    link.click();
+    link.delete;
+  };
   updateDrawing.init();
 };
 
@@ -61,7 +76,7 @@ const updateDrawing = {
   },
   listener: function () {
     const inputEl = document.getElementById(inputId);
-    inputEl.addEventListener('keyup', () => {
+    inputEl.addEventListener('input', () => {
       // console.log(inputEl.value);
       updateDrawing.updateSvg(inputEl.value);
     });
@@ -96,5 +111,6 @@ function makeBlobFromSVG(svg) {
   const url = URL.createObjectURL(blob);
   return url;
 }
+function saveCanvas(canvas) {}
 
 window.onload = init();
